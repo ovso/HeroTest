@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.herotest.data.TasksRepository
-import io.github.ovso.herotest.data.toUserModels
+import io.github.ovso.herotest.data.toAModels
 import io.github.ovso.herotest.data.view.AModel
 import io.github.ovso.herotest.utils.RxBus
 import io.github.ovso.herotest.utils.SchedulerProvider
@@ -47,7 +47,7 @@ class AViewModel(
     }
     reqDisposable = repository.users(text)
       .delay(DELAY_TIME, TimeUnit.MILLISECONDS)
-      .map { it.toUserModels() }
+      .map { it.toAModels() }
       .subscribeOn(SchedulerProvider.io())
       .observeOn(SchedulerProvider.ui())
       .subscribe(::onSuccess, Timber::e)

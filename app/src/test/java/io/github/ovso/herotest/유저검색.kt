@@ -3,7 +3,7 @@
 package io.github.ovso.herotest
 
 import io.github.ovso.herotest.data.remote.UserRemoteDataSource
-import io.github.ovso.herotest.data.toUserModels
+import io.github.ovso.herotest.data.toAModels
 import io.github.ovso.herotest.data.view.AModel
 import io.reactivex.schedulers.Schedulers
 import org.junit.Test
@@ -29,7 +29,7 @@ class 유저검색 {
     val user = "jaeho"
     userRemoteDataSource
       .users(user)
-      .map { it.items.toUserModels() }
+      .map { it.items.toAModels() }
       .subscribeOn(SchedulerProvider.io())
       .observeOn(SchedulerProvider.ui())
       .subscribe(::onSuccess, ::onFailure)

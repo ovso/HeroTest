@@ -9,8 +9,8 @@ import io.github.ovso.herotest.databinding.ActivityMainBinding
 import io.github.ovso.herotest.exts.getViewModelFactory
 import io.github.ovso.herotest.utils.RxBus
 import io.github.ovso.herotest.view.base.DataBindingActivity
-import io.github.ovso.herotest.view.base.OnTextChangedListener
 import io.github.ovso.herotest.view.ui.screena.AViewModel
+import io.github.ovso.herotest.view.ui.screenb.BViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : DataBindingActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -29,15 +29,9 @@ class MainActivity : DataBindingActivity<ActivityMainBinding>(R.layout.activity_
     val owner = this
     viewModel.text.observe(owner, Observer {
       when ((view_pager.currentItem == 0)) {
-        true -> {
-          RxBus.send(AViewModel.RxBusOnTextChanged(it))
-        }
-        else -> {
-        }
+        true -> RxBus.send(AViewModel.RxBusOnTextChanged(it))
+        else -> RxBus.send(BViewModel.RxBusOnTextChanged(it))
       }
-      ((view_pager.adapter as? SectionsPagerAdapter)
-        ?.getItem(view_pager.currentItem) as? OnTextChangedListener)
-        ?.onTextChanged(it)
     })
   }
 

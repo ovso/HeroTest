@@ -27,7 +27,7 @@ class ViewModelFactory constructor(
     when {
       isAssignableFrom(MainViewModel::class.java) -> MainViewModel()
       isAssignableFrom(AViewModel::class.java) -> AViewModel(owner, repository)
-      isAssignableFrom(BViewModel::class.java) -> BViewModel()
+      isAssignableFrom(BViewModel::class.java) -> BViewModel(owner, repository)
       else ->
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

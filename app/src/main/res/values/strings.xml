@@ -2,4 +2,5 @@
     <string name="app_name">HeroTest</string>
     <string name="tab_text_1">Screen A</string>
     <string name="tab_text_2">Screen B</string>
+    <string name="main_search_hint">GitHub user search</string>
 </resources>

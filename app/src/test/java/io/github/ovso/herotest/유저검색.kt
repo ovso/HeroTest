@@ -4,7 +4,7 @@ package io.github.ovso.herotest
 
 import io.github.ovso.herotest.data.remote.UserRemoteDataSource
 import io.github.ovso.herotest.data.toUserModels
-import io.github.ovso.herotest.data.view.UserModel
+import io.github.ovso.herotest.data.view.AModel
 import io.reactivex.schedulers.Schedulers
 import org.junit.Test
 
@@ -18,7 +18,7 @@ class 유저검색 {
 
   @Test
   fun `검색`() {
-    fun onSuccess(items: List<UserModel>) {
+    fun onSuccess(items: List<AModel>) {
       println(items.toString())
     }
 

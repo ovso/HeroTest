@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.herotest.data.TasksRepository
 import io.github.ovso.herotest.data.toUserModels
-import io.github.ovso.herotest.data.view.UserModel
+import io.github.ovso.herotest.data.view.AModel
 import io.github.ovso.herotest.utils.RxBus
 import io.github.ovso.herotest.utils.SchedulerProvider
 import io.github.ovso.herotest.view.base.DisposableViewModel
@@ -20,8 +20,8 @@ class AViewModel(
 ) : DisposableViewModel() {
 
   private var reqDisposable: Disposable? = null
-  private val _items = MutableLiveData<List<UserModel>>()
-  val items: LiveData<List<UserModel>> = _items
+  private val _items = MutableLiveData<List<AModel>>()
+  val items: LiveData<List<AModel>> = _items
 
   init {
     compositeDisposable += RxBus.toObservable().subscribe {
@@ -42,7 +42,7 @@ class AViewModel(
   }
 
   private fun reqSearch(text: String) {
-    fun onSuccess(items: List<UserModel>) {
+    fun onSuccess(items: List<AModel>) {
       _items.value = items
     }
     reqDisposable = repository.users(text)

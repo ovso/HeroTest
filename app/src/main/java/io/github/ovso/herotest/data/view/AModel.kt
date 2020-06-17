@@ -1,6 +1,6 @@
 package io.github.ovso.herotest.data.view
 
-data class UserModel(
+data class AModel(
   val avatar_url: String,
   val events_url: String,
   val followers_url: String,

@@ -3,15 +3,15 @@ package io.github.ovso.herotest.view.ui.screena.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import io.github.ovso.herotest.data.view.UserModel
+import io.github.ovso.herotest.data.view.AModel
 
-class AAdapter : ListAdapter<UserModel, AViewHolder>(
-  object : DiffUtil.ItemCallback<UserModel>() {
-    override fun areItemsTheSame(oldItem: UserModel, newItem: UserModel): Boolean {
+class AAdapter : ListAdapter<AModel, AViewHolder>(
+  object : DiffUtil.ItemCallback<AModel>() {
+    override fun areItemsTheSame(oldItem: AModel, newItem: AModel): Boolean {
       return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: UserModel, newItem: UserModel): Boolean {
+    override fun areContentsTheSame(oldItem: AModel, newItem: AModel): Boolean {
       return areItemsTheSame(oldItem, newItem)
     }
   }) {

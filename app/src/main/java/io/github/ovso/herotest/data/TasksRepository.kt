@@ -12,11 +12,19 @@ class TasksRepository(
   private val localDataSource: TasksLocalDataSource
 ) : TasksDataSource {
 
-  override fun users(q:String): Single<UsersResponse> {
+  override fun users(q: String): Single<UsersResponse> {
     return remoteDataSource.users(q)
   }
 
   override fun favList(): LiveData<List<FavEntity>> {
     return localDataSource.favList()
+  }
+
+  override fun favEntity(id: Int): LiveData<FavEntity?> {
+    return localDataSource.favEntity(id)
+  }
+
+  override fun favEntityRx(id: Int): Single<FavEntity?> {
+    return localDataSource.favEntityRx(id)
   }
 }

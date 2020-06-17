@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import io.reactivex.Single
 
 @Dao
 interface FavDao {
@@ -22,4 +23,7 @@ interface FavDao {
 
   @Query("SELECT * FROM favorites WHERE id LIKE :id")
   fun getEntity(id: Int): LiveData<FavEntity?>
+
+  @Query("SELECT * FROM favorites WHERE id LIKE :id")
+  fun getEntityRx(id: Int): Single<FavEntity?>
 }

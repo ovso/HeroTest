@@ -2,14 +2,13 @@ package io.github.ovso.herotest.view.ui.screena
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.savedstate.SavedStateRegistryOwner
-import io.github.ovso.herotest.data.*
+import io.github.ovso.herotest.data.TasksRepository
+import io.github.ovso.herotest.data.toAModels
 import io.github.ovso.herotest.data.view.AModel
 import io.github.ovso.herotest.utils.RxBus
 import io.github.ovso.herotest.utils.SchedulerProvider
 import io.github.ovso.herotest.view.base.DisposableViewModel
-import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber
@@ -55,6 +54,7 @@ class AViewModel(
   }
 
   data class RxBusOnTextChanged(val text: String)
+  data class RxBusFavItem(val id: Int)
 
   companion object {
     const val DELAY_TIME = 300L

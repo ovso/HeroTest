@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import io.github.ovso.herotest.App
 import io.github.ovso.herotest.R
+import io.github.ovso.herotest.data.local.model.FavEntity
 import io.github.ovso.herotest.data.toFavEntity
 import io.github.ovso.herotest.data.view.AModel
 import io.github.ovso.herotest.databinding.ItemAllBinding
@@ -24,7 +25,7 @@ class AViewHolder private constructor(private val binding: ItemAllBinding) :
     Glide.with(itemView).load(item.avatar_url).into(binding.ivItemAllThumb)
     binding.tvItemAllDescription.text = item.toString()
     binding.ivItemAllFav.setOnClickListener(this::onFavClick)
-    observeFav()
+//    observeFav()
   }
 
   private fun observeFav() {

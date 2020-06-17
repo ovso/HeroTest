@@ -25,7 +25,21 @@ class AViewHolder private constructor(private val binding: ItemAllBinding) :
     Glide.with(itemView).load(item.avatar_url).into(binding.ivItemAllThumb)
     binding.tvItemAllDescription.text = item.toString()
     binding.ivItemAllFav.setOnClickListener(this::onFavClick)
+//    removeObserve()
 //    observeFav()
+  }
+
+  private fun removeObserve() {
+    val owner = context as? ComponentActivity
+    owner?.let {
+      (context.applicationContext as? App)
+        ?.database?.favDao()?.getEntity(item.id)
+        ?.removeObserver(observer)
+    }
+  }
+
+  private val observer: Observer<FavEntity?> = Observer {
+    binding.ivItemAllFav.isSelected = it != null
   }
 
   private fun observeFav() {
@@ -33,9 +47,7 @@ class AViewHolder private constructor(private val binding: ItemAllBinding) :
     owner?.let {
       (context.applicationContext as? App)
         ?.database?.favDao()?.getEntity(item.id)
-        ?.observe(owner, Observer {
-          binding.ivItemAllFav.isSelected = it != null
-        })
+        ?.observe(owner, observer)
     }
   }
 

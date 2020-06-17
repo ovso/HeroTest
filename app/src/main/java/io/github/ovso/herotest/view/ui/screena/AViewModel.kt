@@ -6,17 +6,14 @@ import androidx.lifecycle.Observer
 import androidx.savedstate.SavedStateRegistryOwner
 import com.google.gson.Gson
 import io.github.ovso.herotest.data.TasksRepository
-import io.github.ovso.herotest.data.entitiesToAModels
 import io.github.ovso.herotest.data.toAModels
 import io.github.ovso.herotest.data.view.AModel
 import io.github.ovso.herotest.utils.RxBus
 import io.github.ovso.herotest.utils.SchedulerProvider
 import io.github.ovso.herotest.view.base.DisposableViewModel
 import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.plusAssign
-import io.reactivex.rxkotlin.toObservable
 import okhttp3.internal.toImmutableList
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -36,8 +33,6 @@ class AViewModel(
       .subscribe {
         if (it is RxBusOnTextChanged) {
           onTextChanged(it.text)
-        } else if (it is RxBusUpdateSearchItem) {
-//          updateItem()
         }
       }
 
@@ -60,24 +55,6 @@ class AViewModel(
         }, Timber::e)
       }
     })
-  }
-
-  private fun updateItem() {
-    val g = Gson()
-    _items.value?.let {
-      compositeDisposable += Observable.fromIterable(it).map { model ->
-        val toList = repository.favListRx().blockingGet().filter { entity ->
-          entity.id == model.id
-        }.toList()
-        model.isSelected = toList.count() > 0
-        g.fromJson(g.toJson(model), AModel::class.java)
-      }.toList()
-        .subscribeOn(SchedulerProvider.io())
-        .observeOn(SchedulerProvider.ui())
-        .subscribe({ models ->
-          _items.value = models
-        }, Timber::e)
-    }
   }
 
   private fun onTextChanged(text: String) {
@@ -116,7 +93,6 @@ class AViewModel(
   }
 
   data class RxBusOnTextChanged(val text: String)
-  class RxBusUpdateSearchItem
   companion object {
     const val DELAY_TIME = 300L
   }

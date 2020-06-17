@@ -10,8 +10,6 @@ import io.github.ovso.herotest.R
 import io.github.ovso.herotest.data.toFavEntity
 import io.github.ovso.herotest.data.view.BModel
 import io.github.ovso.herotest.databinding.ItemAllBinding
-import io.github.ovso.herotest.utils.RxBus
-import io.github.ovso.herotest.view.ui.screena.AViewModel
 
 class BViewHolder private constructor(private val binding: ItemAllBinding) :
   RecyclerView.ViewHolder(binding.root) {
@@ -34,7 +32,6 @@ class BViewHolder private constructor(private val binding: ItemAllBinding) :
       ((context.applicationContext) as? App)
         ?.database?.favDao()
         ?.delete(item.toFavEntity(Gson()))
-      RxBus.send(AViewModel.RxBusUpdateSearchItem())
     }.start()
   }
 

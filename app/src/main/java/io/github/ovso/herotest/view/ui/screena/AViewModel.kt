@@ -45,14 +45,17 @@ class AViewModel(
   }
 
   private fun observe() {
+    val g = Gson()
     repository.favList().observe(owner, Observer { entities ->
       nowItem?.let { models ->
         compositeDisposable += Observable.fromIterable(models).map {
           val toList = entities.filter { entity ->
             entity.id == it.id
           }.toList()
+          Timber.d("AViewModel = ${toList.count() > 0}")
           it.isSelected = toList.count() > 0
-          it
+          Timber.d("${it.login}, ${it.isSelected}")
+          g.fromJson(g.toJson(it), AModel::class.java)
         }.toList().subscribe({
           _items.postValue(it)
         }, Timber::e)

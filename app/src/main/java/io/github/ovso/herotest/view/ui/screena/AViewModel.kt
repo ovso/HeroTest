@@ -30,18 +30,6 @@ class AViewModel(
         onTextChanged(it.text)
       }
     }
-//    observeFav()
-  }
-
-  private fun observeFav() {
-    repository.favList().observe(owner, Observer {
-      Single.fromCallable(it::entitiesToAModels)
-        .subscribeOn(SchedulerProvider.io())
-        .observeOn(SchedulerProvider.ui())
-        .subscribe({ models ->
-          _items.value = models
-        }, Timber::e)
-    })
   }
 
   private fun onTextChanged(text: String) {

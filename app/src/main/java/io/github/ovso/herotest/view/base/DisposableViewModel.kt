@@ -8,6 +8,10 @@ open class DisposableViewModel : ViewModel() {
 
   override fun onCleared() {
     super.onCleared()
+    clearDisposable()
+  }
+
+  protected fun clearDisposable() {
     compositeDisposable.clear()
   }
 

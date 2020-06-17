@@ -4,7 +4,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import io.github.ovso.herotest.data.view.AModel
-import timber.log.Timber
 
 class AAdapter : ListAdapter<AModel, AViewHolder>(
   object : DiffUtil.ItemCallback<AModel>() {
@@ -13,8 +12,6 @@ class AAdapter : ListAdapter<AModel, AViewHolder>(
     }
 
     override fun areContentsTheSame(oldItem: AModel, newItem: AModel): Boolean {
-//      return areItemsTheSame(oldItem, newItem)
-      Timber.d("${oldItem.login} = ${oldItem.isSelected == newItem.isSelected}")
       return oldItem.isSelected == newItem.isSelected
     }
   }) {

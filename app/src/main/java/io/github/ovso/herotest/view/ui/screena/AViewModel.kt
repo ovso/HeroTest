@@ -52,7 +52,6 @@ class AViewModel(
           val toList = entities.filter { entity ->
             entity.id == it.id
           }.toList()
-          Timber.d("AViewModel = ${toList.count() > 0}")
           it.isSelected = toList.count() > 0
           Timber.d("${it.login}, ${it.isSelected}")
           g.fromJson(g.toJson(it), AModel::class.java)

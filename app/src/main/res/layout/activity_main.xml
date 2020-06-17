@@ -25,6 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:hint="@string/main_search_hint"
+                android:maxLines="1"
                 android:onTextChanged="@{(text,a,b,c) -> viewModel.onSearchTextChanged(String.valueOf(text))}" />
 
             <com.google.android.material.tabs.TabLayout

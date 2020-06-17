@@ -13,6 +13,9 @@ class AViewHolder private constructor(private val binding: ItemAllBinding) :
   fun onBindViewHolder(item: UserModel) {
     Glide.with(itemView).load(item.avatar_url).into(binding.ivItemAll)
     binding.tvItemAllDescription.text = item.toString()
+    binding.ivItemAllFav.setOnClickListener {
+      it.isSelected = !it.isSelected
+    }
   }
 
   companion object {

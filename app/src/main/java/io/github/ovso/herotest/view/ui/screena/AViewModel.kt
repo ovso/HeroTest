@@ -9,6 +9,7 @@ import io.github.ovso.herotest.data.view.UserModel
 import io.github.ovso.herotest.utils.RxBus
 import io.github.ovso.herotest.utils.SchedulerProvider
 import io.github.ovso.herotest.view.base.DisposableViewModel
+import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -18,6 +19,7 @@ class AViewModel(
   private val repository: TasksRepository
 ) : DisposableViewModel() {
 
+  private var reqDisposable: Disposable? = null
   private val _items = MutableLiveData<List<UserModel>>()
   val items: LiveData<List<UserModel>> = _items
 
@@ -30,15 +32,20 @@ class AViewModel(
   }
 
   private fun onTextChanged(text: String) {
-    clearDisposable()
+    disposeUsers()
     reqSearch(text)
+  }
+
+  private fun disposeUsers() {
+    reqDisposable?.dispose()
+    reqDisposable = null
   }
 
   private fun reqSearch(text: String) {
     fun onSuccess(items: List<UserModel>) {
       _items.value = items
     }
-    compositeDisposable += repository.users(text)
+    reqDisposable = repository.users(text)
       .delay(DELAY_TIME, TimeUnit.MILLISECONDS)
       .map { it.toUserModels() }
       .subscribeOn(SchedulerProvider.io())

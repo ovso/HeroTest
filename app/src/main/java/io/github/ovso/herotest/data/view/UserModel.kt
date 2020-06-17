@@ -20,4 +20,8 @@ data class UserModel(
   val subscriptions_url: String,
   val type: String,
   val url: String
-)
+) {
+  override fun toString(): String {
+    return "$login \n $id \n $node_id \n $avatar_url \n $url"
+  }
+}

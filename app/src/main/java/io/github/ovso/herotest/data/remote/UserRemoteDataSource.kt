@@ -1,6 +1,6 @@
 package io.github.ovso.herotest.data.remote
 
-import com.google.gson.JsonElement
+import io.github.ovso.herotest.data.remote.model.UsersResponse
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -13,7 +13,7 @@ object UserRemoteDataSource {
     return createRetrofit().create(UserService::class.java)
   }
 
-  fun users(q: String): Single<JsonElement> {
+  fun users(q: String): Single<UsersResponse> {
     return api().users(q)
   }
 

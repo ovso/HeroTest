@@ -1,6 +1,10 @@
+@file:Suppress("NonAsciiCharacters", "ClassName")
+
 package io.github.ovso.herotest
 
 import io.github.ovso.herotest.data.remote.UserRemoteDataSource
+import io.github.ovso.herotest.data.toUserModels
+import io.github.ovso.herotest.data.view.UserModel
 import io.reactivex.schedulers.Schedulers
 import org.junit.Test
 
@@ -9,13 +13,13 @@ import org.junit.Test
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class GithubTest {
+class 유저검색 {
   private val userRemoteDataSource by lazy { UserRemoteDataSource }
 
   @Test
-  fun `유저검색`() {
-    fun onSuccess(any: Any) {
-      println(any.toString())
+  fun `검색`() {
+    fun onSuccess(items: List<UserModel>) {
+      println(items.toString())
     }
 
     fun onFailure(t: Throwable) {
@@ -25,6 +29,7 @@ class GithubTest {
     val user = "jaeho"
     userRemoteDataSource
       .users(user)
+      .map { it.items.toUserModels() }
       .subscribeOn(SchedulerProvider.io())
       .observeOn(SchedulerProvider.ui())
       .subscribe(::onSuccess, ::onFailure)

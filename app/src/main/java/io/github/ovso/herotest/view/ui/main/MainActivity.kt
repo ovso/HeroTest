@@ -11,22 +11,22 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : DataBindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
-    private val viewModel: MainViewModel by viewModels { getViewModelFactory() }
+  private val viewModel: MainViewModel by viewModels { getViewModelFactory() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        supportActionBar?.hide()
-        binding.viewModel = viewModel
-        setupViewPagerAndTabs()
-    }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    supportActionBar?.hide()
+    binding.viewModel = viewModel
+    setupViewPagerAndTabs()
+  }
 
-    private fun setupViewPagerAndTabs() {
-        view_pager.adapter = SectionsPagerAdapter(this, supportFragmentManager)
-        view_pager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
-            override fun onPageSelected(position: Int) {
-                Screen.selected(position)
-            }
-        })
-        tabs.setupWithViewPager(view_pager)
-    }
+  private fun setupViewPagerAndTabs() {
+    view_pager.adapter = SectionsPagerAdapter(this, supportFragmentManager)
+    view_pager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+      override fun onPageSelected(position: Int) {
+        Screen.selected(position)
+      }
+    })
+    tabs.setupWithViewPager(view_pager)
+  }
 }

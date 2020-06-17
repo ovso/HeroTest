@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 
 open class DisposableViewModel : ViewModel() {
-    protected val compositeDisposable = CompositeDisposable()
+  protected val compositeDisposable = CompositeDisposable()
 
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable.clear()
-    }
+  override fun onCleared() {
+    super.onCleared()
+    compositeDisposable.clear()
+  }
 
 }

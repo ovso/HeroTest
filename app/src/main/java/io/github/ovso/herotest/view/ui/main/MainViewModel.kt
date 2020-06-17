@@ -5,7 +5,7 @@ import timber.log.Timber
 
 class MainViewModel : DisposableViewModel() {
 
-    fun onSearchTextChanged(text: String) {
-        Timber.i("onSearchTextChanged($text)")
-    }
+  fun onSearchTextChanged(text: String) {
+    Timber.i("onSearchTextChanged($text)")
+  }
 }

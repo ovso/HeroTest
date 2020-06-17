@@ -10,23 +10,23 @@ import io.github.ovso.herotest.R
 
 class BFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = BFragment()
-    }
+  companion object {
+    fun newInstance() = BFragment()
+  }
 
-    private lateinit var viewModel: BViewModel
+  private lateinit var viewModel: BViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_b, container, false)
-    }
+  override fun onCreateView(
+    inflater: LayoutInflater, container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
+    return inflater.inflate(R.layout.fragment_b, container, false)
+  }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(BViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+    viewModel = ViewModelProviders.of(this).get(BViewModel::class.java)
+    // TODO: Use the ViewModel
+  }
 
 }

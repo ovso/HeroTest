@@ -6,18 +6,18 @@ import io.github.ovso.herotest.data.remote.TasksRemoteDataSource
 
 object ServiceLocator {
 
-    @Volatile
-    var tasksRepository: TasksRepository? = null
+  @Volatile
+  var tasksRepository: TasksRepository? = null
 
-    fun provideTasksRepository(context: Context): TasksRepository {
-        synchronized(this) {
-            return tasksRepository ?: createTasksRepository(context)
-        }
+  fun provideTasksRepository(context: Context): TasksRepository {
+    synchronized(this) {
+      return tasksRepository ?: createTasksRepository(context)
     }
+  }
 
-    private fun createTasksRepository(context: Context): TasksRepository {
-        val newRepo = TasksRepository(TasksRemoteDataSource(), TasksLocalDataSource(context))
-        tasksRepository = newRepo
-        return newRepo
-    }
+  private fun createTasksRepository(context: Context): TasksRepository {
+    val newRepo = TasksRepository(TasksRemoteDataSource(), TasksLocalDataSource(context))
+    tasksRepository = newRepo
+    return newRepo
+  }
 }

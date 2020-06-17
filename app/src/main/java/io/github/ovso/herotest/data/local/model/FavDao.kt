@@ -9,16 +9,16 @@ import io.github.ovso.herotest.data.local.model.FavEntity
 
 @Dao
 interface FavDao {
-    @Insert
-    fun insert(repo: FavEntity)
+  @Insert
+  fun insert(repo: FavEntity)
 
-    @Delete
-    fun delete(repo: FavEntity): Int
+  @Delete
+  fun delete(repo: FavEntity): Int
 
-    @Query("delete from favorites")
-    fun removeAll()
+  @Query("delete from favorites")
+  fun removeAll()
 
-    @Query("SELECT * FROM favorites")
-    fun bookmarks(): LiveData<List<FavEntity>>
+  @Query("SELECT * FROM favorites")
+  fun bookmarks(): LiveData<List<FavEntity>>
 
 }

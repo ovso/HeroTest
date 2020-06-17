@@ -7,5 +7,5 @@ import io.github.ovso.herotest.data.local.model.FavEntity
 
 @Database(entities = [FavEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun favDao(): FavDao
+  abstract fun favDao(): FavDao
 }

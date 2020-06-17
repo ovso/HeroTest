@@ -13,23 +13,23 @@ import io.github.ovso.herotest.view.ui.screenb.BViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(
-    private val repository: TasksRepository,
-    private val owner: SavedStateRegistryOwner,
-    private val defaultArgs: Bundle? = null,
-    private val intent: Intent? = null
+  private val repository: TasksRepository,
+  private val owner: SavedStateRegistryOwner,
+  private val defaultArgs: Bundle? = null,
+  private val intent: Intent? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
 
-    override fun <T : ViewModel> create(
-        key: String,
-        modelClass: Class<T>,
-        handle: SavedStateHandle
-    ) = with(modelClass) {
-        when {
-            isAssignableFrom(MainViewModel::class.java) -> MainViewModel()
-            isAssignableFrom(AViewModel::class.java) -> AViewModel()
-            isAssignableFrom(BViewModel::class.java) -> BViewModel()
-            else ->
-                throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
-        }
-    } as T
+  override fun <T : ViewModel> create(
+    key: String,
+    modelClass: Class<T>,
+    handle: SavedStateHandle
+  ) = with(modelClass) {
+    when {
+      isAssignableFrom(MainViewModel::class.java) -> MainViewModel()
+      isAssignableFrom(AViewModel::class.java) -> AViewModel()
+      isAssignableFrom(BViewModel::class.java) -> BViewModel()
+      else ->
+        throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
+    }
+  } as T
 }

@@ -11,7 +11,7 @@ import io.github.ovso.herotest.databinding.FragmentBBinding
 import io.github.ovso.herotest.exts.getViewModelFactory
 import io.github.ovso.herotest.view.base.DataBindingFragment
 import io.github.ovso.herotest.view.ui.screenb.adapter.BAdapter
-import kotlinx.android.synthetic.main.fragment_a.*
+import kotlinx.android.synthetic.main.fragment_b.*
 
 class BFragment : DataBindingFragment<FragmentBBinding>(R.layout.fragment_b) {
 
@@ -38,7 +38,7 @@ class BFragment : DataBindingFragment<FragmentBBinding>(R.layout.fragment_b) {
   }
 
   private fun setupRv() {
-    rv_a.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
-    rv_a.adapter = adapter
+    rv_b.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
+    rv_b.adapter = adapter
   }
 }

@@ -19,7 +19,7 @@ class AViewHolder private constructor(private val binding: ItemAllBinding) :
   private lateinit var item: AModel
   fun onBindViewHolder(item: AModel) {
     this.item = item
-    Glide.with(itemView).load(item.avatar_url).into(binding.ivItemAll)
+    Glide.with(itemView).load(item.avatar_url).into(binding.ivItemAllThumb)
     binding.tvItemAllDescription.text = item.toString()
     binding.ivItemAllFav.setOnClickListener(this::onFavClick)
   }

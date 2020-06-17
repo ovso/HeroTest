@@ -18,6 +18,20 @@ fun List<UserResponse>.toAModels(): List<AModel> {
 }
 
 @WorkerThread
+fun List<FavEntity>.entitiesToAModels(): List<AModel> {
+  val g = Gson()
+  return this.toObservable().map {
+    it.toAModel(g)
+  }.toList().blockingGet()
+}
+
+@WorkerThread
+fun FavEntity.toAModel(g: Gson): AModel {
+  return g.fromJson(g.toJson(this), AModel::class.java)
+}
+
+
+@WorkerThread
 fun UsersResponse.toAModels(): List<AModel> {
   val g = Gson()
   return this.items.toObservable().map {
@@ -51,5 +65,4 @@ fun List<FavEntity>.toBModels(): List<BModel> {
   return this.toObservable().map {
     it.toBModel(g)
   }.toList().blockingGet()
-
 }

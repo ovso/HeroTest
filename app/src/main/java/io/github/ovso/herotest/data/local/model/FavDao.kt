@@ -19,4 +19,7 @@ interface FavDao {
 
   @Query("SELECT * FROM favorites")
   fun favorites(): LiveData<List<FavEntity>>
+
+  @Query("SELECT * FROM favorites WHERE id LIKE :id")
+  fun getEntity(id: Int): LiveData<FavEntity?>
 }

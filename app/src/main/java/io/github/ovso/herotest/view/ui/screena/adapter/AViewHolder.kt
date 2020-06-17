@@ -3,6 +3,8 @@ package io.github.ovso.herotest.view.ui.screena.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.ComponentActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
@@ -22,6 +24,22 @@ class AViewHolder private constructor(private val binding: ItemAllBinding) :
     Glide.with(itemView).load(item.avatar_url).into(binding.ivItemAllThumb)
     binding.tvItemAllDescription.text = item.toString()
     binding.ivItemAllFav.setOnClickListener(this::onFavClick)
+    observeFav()
+  }
+
+  private fun observeFav() {
+    val owner = context as? ComponentActivity
+    owner?.let {
+      (context.applicationContext as? App)
+        ?.database?.favDao()?.getEntity(item.id)
+        ?.observe(owner, Observer {
+          binding.ivItemAllFav.isSelected =
+            when (it != null) {
+              true -> true
+              false -> false
+            }
+        })
+    }
   }
 
   private fun onFavClick(it: View) {

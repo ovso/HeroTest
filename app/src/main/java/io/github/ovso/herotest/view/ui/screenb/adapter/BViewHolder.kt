@@ -10,7 +10,8 @@ import io.github.ovso.herotest.R
 import io.github.ovso.herotest.data.toFavEntity
 import io.github.ovso.herotest.data.view.BModel
 import io.github.ovso.herotest.databinding.ItemAllBinding
-import timber.log.Timber
+import io.github.ovso.herotest.utils.RxBus
+import io.github.ovso.herotest.view.ui.screena.AViewModel
 
 class BViewHolder private constructor(private val binding: ItemAllBinding) :
   RecyclerView.ViewHolder(binding.root) {
@@ -30,10 +31,10 @@ class BViewHolder private constructor(private val binding: ItemAllBinding) :
 
   private fun delFav() {
     Thread {
-      val delete = ((context.applicationContext) as? App)
+      ((context.applicationContext) as? App)
         ?.database?.favDao()
         ?.delete(item.toFavEntity(Gson()))
-      Timber.i("delete = $delete")
+      RxBus.send(AViewModel.RxBusUpdateSearchItem())
     }.start()
   }
 

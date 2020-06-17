@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.github.ovso.herotest.R
+import io.github.ovso.herotest.view.base.OnTextChangedListener
+import timber.log.Timber
 
-class BFragment : Fragment() {
+class BFragment : Fragment(), OnTextChangedListener {
 
   companion object {
     fun newInstance() = BFragment()
@@ -27,6 +29,10 @@ class BFragment : Fragment() {
     super.onActivityCreated(savedInstanceState)
     viewModel = ViewModelProviders.of(this).get(BViewModel::class.java)
     // TODO: Use the ViewModel
+  }
+
+  override fun onTextChanged(text: String) {
+    Timber.i("B onTextChanged($text)")
   }
 
 }

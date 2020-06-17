@@ -9,7 +9,7 @@
     android:focusable="true">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_item_all"
+        android:id="@+id/iv_item_all_thumb"
         android:layout_width="80dp"
         android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,7 +26,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_item_all"
+        app:layout_constraintStart_toEndOf="@+id/iv_item_all_thumb"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="모든 정보 표시" />
 

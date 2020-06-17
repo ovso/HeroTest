@@ -11,6 +11,7 @@ import io.github.ovso.herotest.R
 import io.github.ovso.herotest.data.toFavEntity
 import io.github.ovso.herotest.data.view.AModel
 import io.github.ovso.herotest.databinding.ItemAllBinding
+import timber.log.Timber
 
 class AViewHolder private constructor(private val binding: ItemAllBinding) :
   RecyclerView.ViewHolder(binding.root) {
@@ -33,9 +34,10 @@ class AViewHolder private constructor(private val binding: ItemAllBinding) :
 
   private fun delFav() {
     Thread {
-      ((context.applicationContext) as? App)
+      val delete = ((context.applicationContext) as? App)
         ?.database?.favDao()
         ?.delete(item.toFavEntity(Gson()))
+      Timber.i("delete = $delete")
     }.start()
   }
 

@@ -5,7 +5,6 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import io.github.ovso.herotest.data.local.model.FavEntity
 
 @Dao
 interface FavDao {
@@ -15,10 +14,9 @@ interface FavDao {
   @Delete
   fun delete(repo: FavEntity): Int
 
-  @Query("delete from favorites")
+  @Query("DELETE FROM favorites")
   fun removeAll()
 
   @Query("SELECT * FROM favorites")
-  fun bookmarks(): LiveData<List<FavEntity>>
-
+  fun favorites(): LiveData<List<FavEntity>>
 }

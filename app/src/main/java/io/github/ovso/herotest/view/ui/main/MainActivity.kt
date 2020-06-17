@@ -39,7 +39,7 @@ class MainActivity : DataBindingActivity<ActivityMainBinding>(R.layout.activity_
     view_pager.adapter = SectionsPagerAdapter(this, supportFragmentManager)
     view_pager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
       override fun onPageSelected(position: Int) {
-        Screen.selected(position)
+        et_main.setText("")
       }
     })
     tabs.setupWithViewPager(view_pager)

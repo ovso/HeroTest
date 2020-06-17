@@ -4,11 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.savedstate.SavedStateRegistryOwner
 import io.github.ovso.herotest.data.TasksRepository
+import io.github.ovso.herotest.data.entitiesToAModels
 import io.github.ovso.herotest.data.toAModels
 import io.github.ovso.herotest.data.view.AModel
 import io.github.ovso.herotest.utils.RxBus
 import io.github.ovso.herotest.utils.SchedulerProvider
 import io.github.ovso.herotest.view.base.DisposableViewModel
+import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.plusAssign
 import timber.log.Timber
@@ -50,6 +52,15 @@ class AViewModel(
     reqDisposable = repository.users(text)
       .delay(DELAY_TIME, TimeUnit.MILLISECONDS)
       .map { it.toAModels() }
+      .flatMapObservable {
+        Observable.fromIterable(it)
+      }.map { model -> // DB에 있다면 isSelected = true
+        val toList = repository.favListRx().blockingGet().filter {
+          it.id == model.id
+        }.toList()
+        model.isSelected = toList.count() > 0
+        model
+      }.toList()
       .subscribeOn(SchedulerProvider.io())
       .observeOn(SchedulerProvider.ui())
       .subscribe(::onSuccess, Timber::e)

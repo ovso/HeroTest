@@ -19,7 +19,8 @@ data class AModel(
   val starred_url: String,
   val subscriptions_url: String,
   val type: String,
-  val url: String
+  val url: String,
+  var isSelected: Boolean
 ) {
   override fun toString(): String {
     return "$login \n $id \n $node_id \n $avatar_url \n $url"

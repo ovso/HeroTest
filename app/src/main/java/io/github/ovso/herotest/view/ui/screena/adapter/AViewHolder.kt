@@ -25,6 +25,7 @@ class AViewHolder private constructor(private val binding: ItemAllBinding) :
     Glide.with(itemView).load(item.avatar_url).into(binding.ivItemAllThumb)
     binding.tvItemAllDescription.text = item.toString()
     binding.ivItemAllFav.setOnClickListener(this::onFavClick)
+    binding.ivItemAllFav.isSelected = item.isSelected
 //    removeObserve()
 //    observeFav()
   }

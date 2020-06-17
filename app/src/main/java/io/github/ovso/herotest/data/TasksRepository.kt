@@ -20,6 +20,10 @@ class TasksRepository(
     return localDataSource.favList()
   }
 
+  override fun favListRx(): Single<List<FavEntity>> {
+    return localDataSource.favListRx()
+  }
+
   override fun favEntity(id: Int): LiveData<FavEntity?> {
     return localDataSource.favEntity(id)
   }

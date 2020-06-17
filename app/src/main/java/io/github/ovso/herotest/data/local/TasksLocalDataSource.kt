@@ -13,11 +13,15 @@ class TasksLocalDataSource(private val context: Context) {
     return database.favDao().favorites()
   }
 
-  fun favEntity(id:Int): LiveData<FavEntity?> {
+  fun favListRx(): Single<List<FavEntity>> {
+    return database.favDao().favoritesRx()
+  }
+
+  fun favEntity(id: Int): LiveData<FavEntity?> {
     return database.favDao().getEntity(id)
   }
 
-  fun favEntityRx(id:Int): Single<FavEntity?> {
+  fun favEntityRx(id: Int): Single<FavEntity?> {
     return database.favDao().getEntityRx(id)
   }
 

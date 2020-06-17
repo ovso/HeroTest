@@ -8,6 +8,7 @@ import io.reactivex.Single
 interface TasksDataSource {
   fun users(q: String): Single<UsersResponse>
   fun favList(): LiveData<List<FavEntity>>
-  fun favEntity(id:Int): LiveData<FavEntity?>
-  fun favEntityRx(id:Int): Single<FavEntity?>
+  fun favEntity(id: Int): LiveData<FavEntity?>
+  fun favEntityRx(id: Int): Single<FavEntity?>
+  fun favListRx(): Single<List<FavEntity>>
 }

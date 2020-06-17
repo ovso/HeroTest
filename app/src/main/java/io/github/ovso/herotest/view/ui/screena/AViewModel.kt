@@ -32,8 +32,10 @@ class AViewModel(
   }
 
   private fun onTextChanged(text: String) {
-    disposeUsers()
-    reqSearch(text)
+    if (text.isBlank().not()) {
+      disposeUsers()
+      reqSearch(text)
+    }
   }
 
   private fun disposeUsers() {

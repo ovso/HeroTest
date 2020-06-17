@@ -33,11 +33,7 @@ class AViewHolder private constructor(private val binding: ItemAllBinding) :
       (context.applicationContext as? App)
         ?.database?.favDao()?.getEntity(item.id)
         ?.observe(owner, Observer {
-          binding.ivItemAllFav.isSelected =
-            when (it != null) {
-              true -> true
-              false -> false
-            }
+          binding.ivItemAllFav.isSelected = it != null
         })
     }
   }

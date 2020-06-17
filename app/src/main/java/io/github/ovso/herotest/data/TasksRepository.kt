@@ -1,12 +1,11 @@
 package io.github.ovso.herotest.data
 
-import io.github.ovso.herotest.data.TasksDataSource
 import io.github.ovso.herotest.data.local.TasksLocalDataSource
-import io.github.ovso.herotest.data.remote.TasksRemoteDataSource
+import io.github.ovso.herotest.data.remote.UserRemoteDataSource
 import io.reactivex.Single
 
 class TasksRepository(
-  private val remoteDataSource: TasksRemoteDataSource,
+  private val userDataSource: UserRemoteDataSource,
   private val localDataSource: TasksLocalDataSource
 ) : TasksDataSource {
 

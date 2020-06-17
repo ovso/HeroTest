@@ -2,7 +2,7 @@ package io.github.ovso.herotest.data
 
 import android.content.Context
 import io.github.ovso.herotest.data.local.TasksLocalDataSource
-import io.github.ovso.herotest.data.remote.TasksRemoteDataSource
+import io.github.ovso.herotest.data.remote.UserRemoteDataSource
 
 object ServiceLocator {
 
@@ -16,7 +16,7 @@ object ServiceLocator {
   }
 
   private fun createTasksRepository(context: Context): TasksRepository {
-    val newRepo = TasksRepository(TasksRemoteDataSource(), TasksLocalDataSource(context))
+    val newRepo = TasksRepository(UserRemoteDataSource, TasksLocalDataSource(context))
     tasksRepository = newRepo
     return newRepo
   }
